@@ -7,6 +7,8 @@ public class Funcionario {
 
     Double Salario;
 
+    int horasTrabalho;
+
     public Funcionario(String nome) {
         Nome = nome;
     }
@@ -39,8 +41,8 @@ public class Funcionario {
 
     }
 
-    public void registrarHorasTrabalho(){
-
+    public void registrarHorasTrabalho(int horas){
+        this.horasTrabalho += horas;
     }
 
     public void calcularSalario(){

@@ -4,11 +4,12 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int escolha, escolha_opcao, respostaCargo;
+        int escolha, escolha_opcao, respostaCargo, horas;
         String Cargo_selecionado;
 
         escolha_opcao = 0;
         respostaCargo = 0;
+        horas = 0;
         Cargo_selecionado = "";
 
 
@@ -35,14 +36,14 @@ public class Main {
             System.out.println("Escolha uma opção: ");
             escolha = scanner.nextInt();
             processar_opcao(escolha, escolha_opcao, funcionario1, funcionario2,
-                    programador, Administrador, respostaCargo, Cargo_selecionado, scanner);
+                    programador, Administrador, respostaCargo, Cargo_selecionado, scanner, horas);
         } while (escolha != 0);
 
         scanner.close();
     }
 
     private static void processar_opcao(int escolha, int escolha_opcao, Funcionario funcionario1, Funcionario funcionario2,
-    Cargo programador, Cargo administrador, int respostaCargo, String Cargo_selecionado, Scanner scanner) {
+    Cargo programador, Cargo administrador, int respostaCargo, String Cargo_selecionado, Scanner scanner, int horas) {
         switch(escolha){
             case 1:
                 System.out.println("Digite '1' para o funcionário '" + funcionario1.getNome() + "' e '2' para o funcionário '"+ funcionario2.getNome() +"' : ");
@@ -63,21 +64,18 @@ public class Main {
                 System.out.println("Digite '1' para o funcionário '" + funcionario1.getNome() + "' e '2' para o funcionário '"+ funcionario2.getNome() +"' : ");
                 escolha_opcao = scanner.nextInt();
 
+                //Escolha de funcionario
                 if (escolha_opcao == 1){
-                    System.out.println("Informe quantas horas o funcionário trabalhou: ");
-                    escolha_opcao = scanner.nextInt();
-
-
-
-                    funcionario1.setCargo(Cargo_selecionado);
-                    System.out.println(funcionario1.getNome() + " teve o seu cargo alterado!");
+                    obterHoras(horas);
+                    funcionario1.registrarHorasTrabalho(horas);
                 } else if (escolha_opcao == 2){
-                    escolherCargo(programador, administrador, Cargo_selecionado, scanner,escolha_opcao, funcionario1, funcionario2);
-                    funcionario2.setCargo(Cargo_selecionado);
-                    System.out.println(funcionario2.getNome() + " teve o seu cargo alterado!");
+                    obterHoras(horas);
+                    funcionario2.registrarHorasTrabalho(horas);
                 } else {
                     System.out.println("Escolha inválida de funcionário");
                 }
+
+                System.out.println("Horas acrescentadas para o funcionário!");
 
                 break;
             case 3:
@@ -149,5 +147,12 @@ public class Main {
 
     }
 
+    private static int obterHoras(int horas){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Informe quantas horas de trabalho este funcionário fez: ");
+        horas = scanner.nextInt();
+
+        return horas;
+    }
 
 }
