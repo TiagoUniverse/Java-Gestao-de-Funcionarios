@@ -65,11 +65,11 @@ public class Main {
                 escolha_opcao = scanner.nextInt();
 
                 //Escolha de funcionario
+
+                horas = obterHoras();
                 if (escolha_opcao == 1){
-                    obterHoras(horas);
                     funcionario1.registrarHorasTrabalho(horas);
                 } else if (escolha_opcao == 2){
-                    obterHoras(horas);
                     funcionario2.registrarHorasTrabalho(horas);
                 } else {
                     System.out.println("Escolha inválida de funcionário");
@@ -79,6 +79,19 @@ public class Main {
 
                 break;
             case 3:
+
+                System.out.println("Digite '1' para o funcionário '" + funcionario1.getNome() + "' e '2' para o funcionário '"+ funcionario2.getNome() +"' : ");
+                escolha_opcao = scanner.nextInt();
+
+                //Escolha de funcionario
+                if (escolha_opcao == 1){
+                    funcionario1.calcularSalario(funcionario1.getSalario(), funcionario1.getHorasTrabalho(), funcionario1.getNome());
+                } else if (escolha_opcao == 2){
+                    funcionario2.calcularSalario(funcionario2.getSalario(), funcionario2.getHorasTrabalho(), funcionario2.getNome());
+                } else {
+                    System.out.println("Escolha inválida de funcionário");
+                }
+
                 break;
             case 4:
                 break;
@@ -147,12 +160,10 @@ public class Main {
 
     }
 
-    private static int obterHoras(int horas){
+    private static int obterHoras(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe quantas horas de trabalho este funcionário fez: ");
-        horas = scanner.nextInt();
-
-        return horas;
+        return scanner.nextInt();
     }
 
 }

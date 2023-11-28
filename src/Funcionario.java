@@ -45,7 +45,23 @@ public class Funcionario {
         this.horasTrabalho += horas;
     }
 
-    public void calcularSalario(){
+    public int getHorasTrabalho() {
+        return horasTrabalho;
+    }
+
+    public void setHorasTrabalho(int horasTrabalho) {
+        this.horasTrabalho = horasTrabalho;
+    }
+
+    public void calcularSalario(Double salario, int horas, String nome){
+        System.out.println("o salário é:"+ salario);
+        System.out.println("As horas são: " + horas);
+        if (salario != null) {
+            double resultado = salario * horas;
+            System.out.println("O salário total do funcionário " + nome + " é: " + resultado);
+        } else {
+            System.out.println("Por favor, preencha o salário deste funcionário primeiro.");
+        }
 
     }
 
