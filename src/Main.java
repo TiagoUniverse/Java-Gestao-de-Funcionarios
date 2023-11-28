@@ -48,22 +48,37 @@ public class Main {
                 System.out.println("Digite '1' para o funcionário '" + funcionario1.getNome() + "' e '2' para o funcionário '"+ funcionario2.getNome() +"' : ");
                 escolha_opcao = scanner.nextInt();
 
+                //Escolha de funcionario
                 if (escolha_opcao == 1){
-                    escolherCargo(programador, administrador, Cargo_selecionado, scanner);
+                    escolherCargo(programador, administrador, Cargo_selecionado, scanner, escolha_opcao, funcionario1, funcionario2);
+                } else if (escolha_opcao == 2){
+                    escolherCargo(programador, administrador, Cargo_selecionado, scanner, escolha_opcao, funcionario1, funcionario2);
+                } else {
+                    System.out.println("Escolha inválida de funcionário");
+                }
+
+                break;
+            case 2:
+
+                System.out.println("Digite '1' para o funcionário '" + funcionario1.getNome() + "' e '2' para o funcionário '"+ funcionario2.getNome() +"' : ");
+                escolha_opcao = scanner.nextInt();
+
+                if (escolha_opcao == 1){
+                    System.out.println("Informe quantas horas o funcionário trabalhou: ");
+                    escolha_opcao = scanner.nextInt();
+
+
+
                     funcionario1.setCargo(Cargo_selecionado);
                     System.out.println(funcionario1.getNome() + " teve o seu cargo alterado!");
                 } else if (escolha_opcao == 2){
-                    escolherCargo(programador, administrador, Cargo_selecionado, scanner);
+                    escolherCargo(programador, administrador, Cargo_selecionado, scanner,escolha_opcao, funcionario1, funcionario2);
                     funcionario2.setCargo(Cargo_selecionado);
                     System.out.println(funcionario2.getNome() + " teve o seu cargo alterado!");
                 } else {
                     System.out.println("Escolha inválida de funcionário");
                 }
 
-
-
-                break;
-            case 2:
                 break;
             case 3:
                 break;
@@ -90,9 +105,11 @@ public class Main {
     }
 
 
-    private  static String escolherCargo(Cargo programador, Cargo administrador,
-                                         String Cargo_selecionado, Scanner scanner){
+    private  static void escolherCargo(Cargo programador, Cargo administrador,
+                                         String Cargo_selecionado, Scanner scanner, int escolha_opcao, Funcionario funcionario1, Funcionario funcionario2){
         int respostaCargo;
+        System.out.println(escolha_opcao);
+
         do {
             System.out.println("----------------");
             System.out.println("Escolha um cargo: ");
@@ -101,13 +118,35 @@ public class Main {
             respostaCargo = scanner.nextInt();
         } while (respostaCargo != 1 && respostaCargo != 2);
 
-        if (respostaCargo == 1){
-            Cargo_selecionado = programador.getNome();
-        } else if (respostaCargo == 2){
-            Cargo_selecionado = administrador.getNome();
+
+        if (escolha_opcao == 1){
+            //Funcionario 1
+
+            // Escolha de Cargo
+            if (respostaCargo == 1){
+            funcionario1.setSalario(programador.getSalario_base());
+            funcionario1.setCargo(programador.getNome());
+            } else if (respostaCargo == 2){
+            funcionario1.setSalario(administrador.getSalario_base());
+            funcionario1.setCargo(administrador.getNome());
+            }
+            System.out.println(funcionario1.getNome() + " teve o seu cargo alterado!");
+
+        } else if (escolha_opcao == 2){
+            //Funcionario 2
+            // Escolha de Cargo
+            if (respostaCargo == 1){
+                funcionario2.setSalario(programador.getSalario_base());
+                funcionario2.setCargo(programador.getNome());
+            } else if (respostaCargo == 2){
+                funcionario2.setSalario(administrador.getSalario_base());
+                funcionario2.setCargo(administrador.getNome());
+            }
+            System.out.println(funcionario2.getNome() + " teve o seu cargo alterado!");
+
         }
 
-        return Cargo_selecionado;
+
     }
 
 
