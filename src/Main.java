@@ -5,7 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         int escolha, escolha_opcao, respostaCargo, horas;
-        String Cargo_selecionado;
+        String Cargo_selecionado, nomeDepartamento;
 
         escolha_opcao = 0;
         respostaCargo = 0;
@@ -36,7 +36,7 @@ public class Main {
             System.out.println("Escolha uma opção: ");
             escolha = scanner.nextInt();
             processar_opcao(escolha, escolha_opcao, funcionario1, funcionario2,
-                    programador, Administrador, respostaCargo, Cargo_selecionado, scanner, horas);
+                    programador, Administrador, respostaCargo, Cargo_selecionado, scanner, horas );
         } while (escolha != 0);
 
         scanner.close();
@@ -94,8 +94,14 @@ public class Main {
 
                 break;
             case 4:
+                System.out.println("Diga um nome para o departamento");
+                String nomeDoDepartamento = scanner.next();
+                Departamento departamento = new Departamento(nomeDoDepartamento);
+                System.out.println("Departamento " + departamento + " foi criado!");
                 break;
+
             case 0:
+                System.out.println("Fechando o programa. Obrigado pelo uso!");
                 break;
             default:
                 System.out.println("Erro na escolha de opções");

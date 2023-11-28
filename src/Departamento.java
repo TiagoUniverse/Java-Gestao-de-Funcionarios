@@ -1,17 +1,16 @@
 public class Departamento {
-
-    //Atributos
-    String Nome;
+    private String nome;
 
     public Departamento(String nome) {
-        Nome = nome;
+        this.nome = nome;
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
-    public void setNome(String nome) {
-        Nome = nome;
+    @Override
+    public String toString() {
+        return nome;
     }
 }
