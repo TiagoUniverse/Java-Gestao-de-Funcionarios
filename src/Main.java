@@ -7,6 +7,10 @@ public class Main {
         int escolha, escolha_opcao, respostaCargo;
         String Cargo_selecionado;
 
+        escolha_opcao = 0;
+        respostaCargo = 0;
+        Cargo_selecionado = "";
+
 
         Cargo programador = new Cargo("programador", 3500.00 , "GymPass");
         Cargo Administrador = new Cargo("Administrador", 2500.00 , "Vale alimentação");
@@ -30,8 +34,8 @@ public class Main {
             exibirMenu();
             System.out.println("Escolha uma opção: ");
             escolha = scanner.nextInt();
-            processar_opcao(escolha, escolha_opcao, funcionario1, funcionario2, programador, Administrador, respostaCargo, Cargo_selecionado, scanner);
-
+            processar_opcao(escolha, escolha_opcao, funcionario1, funcionario2,
+                    programador, Administrador, respostaCargo, Cargo_selecionado, scanner);
         } while (escolha != 0);
 
         scanner.close();
@@ -41,14 +45,17 @@ public class Main {
     Cargo programador, Cargo administrador, int respostaCargo, String Cargo_selecionado, Scanner scanner) {
         switch(escolha){
             case 1:
-                System.out.println("Digite '1' para o primeiro funcionário e '2' para o segundo funcionário: ");
+                System.out.println("Digite '1' para o funcionário '" + funcionario1.getNome() + "' e '2' para o funcionário '"+ funcionario2.getNome() +"' : ");
                 escolha_opcao = scanner.nextInt();
 
                 if (escolha_opcao == 1){
-                    escolherCargo(programador, administrador, respostaCargo, Cargo_selecionado);
+                    escolherCargo(programador, administrador, Cargo_selecionado, scanner);
                     funcionario1.setCargo(Cargo_selecionado);
+                    System.out.println(funcionario1.getNome() + " teve o seu cargo alterado!");
                 } else if (escolha_opcao == 2){
-
+                    escolherCargo(programador, administrador, Cargo_selecionado, scanner);
+                    funcionario2.setCargo(Cargo_selecionado);
+                    System.out.println(funcionario2.getNome() + " teve o seu cargo alterado!");
                 } else {
                     System.out.println("Escolha inválida de funcionário");
                 }
@@ -83,22 +90,24 @@ public class Main {
     }
 
 
-    private  static String escolherCargo(Cargo programador, Cargo administrador, int respostaCargo, String Cargo_selecionado){
+    private  static String escolherCargo(Cargo programador, Cargo administrador,
+                                         String Cargo_selecionado, Scanner scanner){
+        int respostaCargo;
         do {
             System.out.println("----------------");
             System.out.println("Escolha um cargo: ");
             System.out.println("1." + programador.getNome());
             System.out.println("2." + administrador.getNome());
-            respostaCargo = Scanner.nextInt();
-        } while (respostaCargo != 1 || respostaCargo != 2);
+            respostaCargo = scanner.nextInt();
+        } while (respostaCargo != 1 && respostaCargo != 2);
 
         if (respostaCargo == 1){
-            Cargo = programador.getNome();
+            Cargo_selecionado = programador.getNome();
         } else if (respostaCargo == 2){
-            Cargo = administrador.getNome();
+            Cargo_selecionado = administrador.getNome();
         }
 
-        return Cargo;
+        return Cargo_selecionado;
     }
 
 
